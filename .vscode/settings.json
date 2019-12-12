@@ -1,0 +1,7 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "editor.tabSize": 2,
+  "editor.cursorStyle": "underline",
+  "editor.cursorBlinking": "smooth",
+  "editor.mouseWheelZoom": true
+}
