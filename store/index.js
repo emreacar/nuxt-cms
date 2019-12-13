@@ -1,4 +1,5 @@
 export const state = () => ({
+  appData: {},
   page: {},
   positions: {
     CONTENT_TOP: [],
@@ -24,5 +25,15 @@ export const mutations = {
   },
   setModules (state, modules) {
     state.modules = modules
+  },
+  setAppData (state, appData) {
+    state.appData = appData
+  }
+}
+
+export const actions = {
+  async nuxtServerInit ({ commit }, { app }) {
+    const { appData } = await app.$axios.$get('app')
+    commit('setAppData', appData)
   }
 }
