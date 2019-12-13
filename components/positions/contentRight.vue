@@ -1,7 +1,19 @@
 <template>
-  <div class="row">
+  <div v-if="modules.length" class="row">
     <div class="col-12">
-      CONTENT RIGHT
+      {{ modules }}
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    modules () {
+      const moduleIds = this.$store.state.positions.CONTENT_RIGHT || []
+
+      return this.$store.state.modules.filter(module => moduleIds.includes(module._id))
+    }
+  }
+}
+</script>

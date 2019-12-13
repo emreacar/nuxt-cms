@@ -3,5 +3,9 @@
   "editor.tabSize": 2,
   "editor.cursorStyle": "underline",
   "editor.cursorBlinking": "smooth",
-  "editor.mouseWheelZoom": true
+  "editor.mouseWheelZoom": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+	"prettier.trailingComma": "es5",
+  "editor.detectIndentation": false
 }
