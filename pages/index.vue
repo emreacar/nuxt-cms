@@ -22,12 +22,12 @@ export default {
 
   head () {
     return {
-      title: this.page.title[this.appData.defaultLang],
+      title: this.page.title[this.appData.settings.defaultLang],
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.page.meta[this.appData.defaultLang]
+          content: this.page.meta[this.appData.settings.defaultLang]
         }
       ]
     }

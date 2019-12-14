@@ -1,3 +1,4 @@
+require('dotenv').config()
 
 export default {
   mode: 'universal',
@@ -12,7 +13,9 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap&subset=latin-ext' },
+      { rel: 'stylesheet', href: '/css/fa.min.css' }
     ]
   },
   /*
@@ -75,7 +78,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:4000/public/'
+    baseURL: process.env.API_URL
   },
   /*
   ** Build configuration

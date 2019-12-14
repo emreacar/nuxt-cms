@@ -2,10 +2,20 @@ $primary:       #7D61C8 ;
 $secondary:     #ffffff ;
 $light:         #f1f1f1 ;
 $dark:          #000000 ;
+
+$font-family-sans-serif: "Poppins", sans-serif;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 500; 
+$headings-font-weight: 500;
+$font-weight-base: $font-weight-normal !default;
+
 //then bootstrap & bootstrap-vue should be added after 
 //so that they inherit the custom SCSS variables
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
+
+
 
 .page-enter-active, .page-leave-active {
   transition: opacity .5s;
