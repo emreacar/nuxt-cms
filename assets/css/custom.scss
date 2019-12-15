@@ -115,6 +115,13 @@ $font-weight-base: $font-weight-normal !default;
   }
 }
 
+// module headers
+.g-module-header {
+  background: #004e97;
+  color: #fff;
+  border-radius: 12px;
+}
+
 //Swiper custom bullet
 .bss-paginate-bullet {
   border-radius: 50% !important;
