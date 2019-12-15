@@ -15,11 +15,119 @@ $font-weight-base: $font-weight-normal !default;
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
 
-
-
 .page-enter-active, .page-leave-active {
   transition: opacity .5s;
 }
 .page-enter, .page-leave-to {
   opacity: 0;
+}
+
+// header
+.position-header {
+  background: linear-gradient(0deg, #1d4895 45%, #ffffff 45%);
+  .header-menu-pos { text-align: right; }
+}
+// navigation
+.mP-root {
+  position:relative;
+  width: 100%;
+  display: block;
+  &.pos-headerNav {
+    display: inline-block !important;
+    width: auto !important;
+    &> .mP-item {
+      padding: 6px 0px 0 12px !important;
+    }
+    .mP-item {
+      &.active, &:hover {
+        .mP-link {border-top: 2px solid #fff;}
+      }
+
+      .mP-link {
+        color: #fff;
+        font-size: 1.1em;
+        font-weight: 400;
+        letter-spacing: .7px;
+        text-decoration: none;
+        padding-top: 1px;
+      }
+    }
+  }
+}
+
+.mP-level {
+  display: inline-block;
+  &.mP-horizontal > .mP-item {
+    display: inline-block;
+  }
+  .mP-item {
+    a.mP-link {
+      display: block;
+
+      span.mP-icon {
+        display: inline-block;
+        width: 35px;
+        margin-right: 5px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .mP-level:not(.trigger-visible) {
+      display: none;
+      position: absolute;
+    }
+
+    .mP-level.trigger-visible:not(.mP.mP-dropdown-list) {
+      display: flex;
+    }
+
+    .mP-level.trigger-visible.mP.mP-dropdown-list {
+      display: inline-block;
+    }
+
+    .mP-level {
+      width: auto;
+      z-index: 12;
+
+      &.row {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+//Triggers
+.mP-level > .mP-item {
+  &:hover > .mP-level.trigger-hover {
+    &.mP-dropdown-grid { display: flex}
+    &.mP-dropdown-list { display: inline-block}
+  }
+
+  &:active > .mP-level.trigger-click,
+  &:focus > .mP-level.trigger-click,
+  &:focus-within > .mP-level.trigger-click
+  {
+    &.mP-dropdown-grid { display: flex}
+    &.mP-dropdown-list { display: inline-block}
+  }
+}
+
+//Swiper custom bullet
+.bss-paginate-bullet {
+  border-radius: 50% !important;
+  background-image: -moz-linear-gradient( 90deg, rgb(217,217,217) 0%, rgb(255,255,255) 100%) !important;
+  background-image: -webkit-linear-gradient( 90deg, rgb(217,217,217) 0%, rgb(255,255,255) 100%) !important;
+  background-image: -ms-linear-gradient( 90deg, rgb(217,217,217) 0%, rgb(255,255,255) 100%) !important;
+  box-shadow: 0px 1px 0.99px 0.01px rgba(0, 0, 0, 0.86),inset 0px 1px 3px 0px rgba(0, 0, 0, 0.35) !important;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin: 0 4px;
+
+  &.swiper-pagination-bullet-active {
+    background: #004e97;
+  }
 }

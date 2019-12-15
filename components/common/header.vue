@@ -1,8 +1,8 @@
 <template>
-  <div class="row mx-0 position-header">
+  <div class="row mx-0 my-2 position-header">
     <div class="container">
       <div class="row">
-        <div class="col-12 bbs-logo col-md-4">
+        <div class="col-12 bbs-logo col-md-4 pr-md-0">
           <a class="logo">
             <img
               :src="
@@ -17,13 +17,22 @@
           </a>
         </div>
 
-        <div class="col-12 col-md-8">
-          <div class="row">
-            <div class="col-12 header-module-pos">
-              {{ modules }}
+        <div class="col-12 col-md-8 ml-auto">
+          <div class="row h-100">
+            <div class="col-12 col-md-7 ml-auto header-module-pos">
+              <dynamic-loader
+                v-for="m in positionsModules"
+                :key="m._id"
+                :data="m"
+              />
             </div>
-            <div class="col-12 header-menu-pos">
-              {{ navigation }}
+            <div class="col-12 header-menu-pos align-self-end">
+              <dynamic-loader
+                v-for="m in mainNavModule"
+                :key="m._id"
+                :data="m"
+                position="headerNav"
+              />
             </div>
           </div>
         </div>
@@ -32,22 +41,29 @@
   </div>
 </template>
 <script>
+import dynamicLoader from '@@/components/dynamicLoader'
+
 export default {
+  components: {
+    dynamicLoader
+  },
   computed: {
-    modules () {
-      const showOnHeader = this.appData.staticModules.filter(m => m.showOnHeader)
-
-      return showOnHeader[0] || {}
+    positionsModules () {
+      return this.appData.staticModules.filter(m => m.showOnHeader)
     },
-    navigation () {
-      const navModuleData = this.appData.staticModules.filter(m => m.module === 'menuLister' && m.settings.isMainNav)
-
-      return navModuleData[0] || {}
+    mainNavModule () {
+      return this.appData.staticModules.filter(m => m.module === 'menuLister' && m.settings.isMainNav)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.logo {
+  display: block;
+  .logo-img {
+    width: 100%;
+    max-width: 400px;
+  }
+}
 </style>

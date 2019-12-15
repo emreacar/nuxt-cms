@@ -1,10 +1,10 @@
 <template>
-  <div class="row mx-0 position-topBar d-none d-md-flex py-1">
+  <div class="row mx-0 position-topBar d-none d-md-flex">
     <div class="container">
       <div class="row">
         <div
           v-if="appData.settings && appData.settings.social"
-          class="col-12 col-md-5 text-center"
+          class="col-12 col-md-5 text-left"
         >
           <a
             v-for="(href, social) in appData.settings.social"
@@ -19,7 +19,7 @@
 
         <div
           v-if="appData.settings && appData.settings.contacts"
-          class="col-12 col-md-7"
+          class="col-12 col-md-7 ml-auto text-right"
         >
           <div class="c-item">
             <i class="fas fa-phone-alt" />
@@ -38,7 +38,7 @@
 
 <style lang="scss" scoped>
 .position-topBar {
-  font-size: 1.1rem;
+  font-size: 1rem;
   background: #bebebe;
   color: #3a3a3a;
     i {

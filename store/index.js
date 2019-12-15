@@ -35,5 +35,14 @@ export const actions = {
   async nuxtServerInit ({ commit }, { app }) {
     const { appData } = await app.$axios.$get('app')
     commit('setAppData', appData)
+  },
+  async send ({ commit }, params) {
+    const options = {
+      path: params.path,
+      data: params.data || {}
+    }
+
+    const response = await this.$axios.$post(params.path, options.data)
+    return response
   }
 }

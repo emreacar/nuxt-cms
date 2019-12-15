@@ -14,7 +14,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap&subset=latin-ext' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap&subset=latin-ext' },
       { rel: 'stylesheet', href: '/css/fa.min.css' }
     ]
   },
@@ -26,14 +26,16 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/css/custom.scss'
+    '@/assets/css/custom.scss',
+    'swiper/dist/css/swiper.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '~/plugins/axios',
-    '~/plugins/global'
+    '~/plugins/global',
+    { src: '~/plugins/swiper.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
