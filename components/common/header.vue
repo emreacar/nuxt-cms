@@ -19,7 +19,7 @@
 
         <div class="col-12 col-md-8 ml-auto">
           <div class="row h-100">
-            <div class="col-12 col-md-7 ml-auto header-module-pos">
+            <div class="col-12 col-md-6 ml-auto header-module-pos pt-md-2">
               <dynamic-loader
                 v-for="m in positionsModules"
                 :key="m._id"

@@ -19,12 +19,37 @@
         <div
           v-for="(i, index) in images"
           :key="index"
-          class="col-3 col-md-2"
+          class="col-3 col-md-2 insta-img"
         >
-          <img :src="i.thumbnail_src" class="img-fluid">
+          <img :src="i.thumbnail_src" v-on:click="popupImage(index)" class="img-fluid">
         </div>
       </div>
     </div>
+
+    <!-- images popups -->
+    <b-modal
+      ref="popupImage"
+      body-bg-variant="dark px-0 py-0 d-contents text-center i-modal"
+      centered
+      hide-footer
+      hide-header
+    >
+      <img
+        v-if="currentIndex !== -1"
+        :src="images[currentIndex].display_url"
+        class="img-fluid text-center"
+      >
+      <div v-if="images.length" class="i-pager">
+        <button v-if="currentIndex > 0" v-on:click="--currentIndex" class="prev shadow">
+          <i class="fas fa-angle-left" />
+        </button>
+
+        <button v-if="currentIndex + 1 < images.length" v-on:click="++currentIndex" class="next shadow">
+          <i class="fas fa-angle-right" />
+        </button>
+      </div>
+    </b-modal>
+    <!-- images popups -->
   </div>
 </template>
 
@@ -39,7 +64,8 @@ export default {
   data () {
     return {
       loading: true,
-      images: []
+      images: [],
+      currentIndex: -1
     }
   },
   mounted () {
@@ -56,7 +82,55 @@ export default {
 
       this.images = images.splice(0, this.data.settings.limit)
       this.loading = false
+    },
+    popupImage (index) {
+      this.currentIndex = index
+      this.$refs.popupImage.show()
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.insta-img {
+  cursor: pointer;
+}
+.i-modal {
+  .i-pager {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    padding: 15px;
+    margin-top: -30px;
+    width: 100%;
+
+    button {
+      background: #ffffff;
+      color: #004e97;
+      font-weight: 400;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      outline: none;
+      transition: all 0.3s;
+      &.next {
+        float: right;
+      }
+
+      &.prev {
+        float: left;
+      }
+
+      &:hover {
+        background: #004e97;
+        color: #fff;
+        transition: all 0.3s;
+      }
+    }
+  }
+}
+</style>
