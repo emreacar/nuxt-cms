@@ -140,10 +140,12 @@ export default {
       this.contents = contents
       this.loading = false
       this.$nextTick(() => {
-        const swiperTop = this.$refs.swiperTop.swiper
-        const swiperThumbs = this.$refs.swiperThumbs.swiper
-        swiperTop.controller.control = swiperThumbs
-        swiperThumbs.controller.control = swiperTop
+        if (this.contents.length > 0) {
+          const swiperTop = this.$refs.swiperTop.swiper
+          const swiperThumbs = this.$refs.swiperThumbs.swiper
+          swiperTop.controller.control = swiperThumbs
+          swiperThumbs.controller.control = swiperTop
+        }
       })
     }
   }
