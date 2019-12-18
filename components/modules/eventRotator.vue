@@ -113,10 +113,16 @@ export default {
           prevEl: this.data.settings.arrows !== 'false' ? '.swiper-button-prev' : '.no-navigation'
         },
         breakpoints: {
-          480: {
+          1024: {
+            slidesPerView: '4'
+          },
+          991: {
+            slidesPerView: '3'
+          },
+          768: {
             slidesPerView: '2'
           },
-          320: {
+          480: {
             slidesPerView: '1'
           }
         }
