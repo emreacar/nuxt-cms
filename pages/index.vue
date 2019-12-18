@@ -1,23 +1,23 @@
 <template>
-  <div class="row">
-    <div class="col-12">
-      <h1>INDEX</h1>
-    </div>
-  </div>
+  <pageLoader :data="{page, content}" />
 </template>
 
 <script>
-export default {
-  computed: {
-    page () {
-      return this.$store.state.page
-    }
-  },
+import pageLoader from '@@/components/pageLoader'
 
-  async fetch ({ store, app, params, error }) {
-    const { page, modules } = await app.$axios.$get('page/main')
+export default {
+  components: {
+    pageLoader
+  },
+  async asyncData ({ store, app, params, error }) {
+    const { page, content, modules } = await app.$axios.$get('page/main')
     store.commit('setPage', page)
     store.commit('setModules', modules)
+
+    return {
+      page,
+      content
+    }
   },
 
   head () {

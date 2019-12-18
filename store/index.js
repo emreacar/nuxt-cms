@@ -1,6 +1,7 @@
 export const state = () => ({
   appData: {},
   page: {},
+  content: [],
   positions: {
     CONTENT_TOP: [],
     CONTENT_TOP_LEFT: [],
