@@ -17,12 +17,8 @@
         {{ data.settings[appData.settings.defaultLang] }}
       </h1>
     </div>
-    <div
-      :class="[
-        'swiper-wrapper',
-        data.settings.showHeader ? 'swiper-bordered' : ''
-      ]"
-    >
+    <div v-if="data.settings.showHeader" class="swiper-bordered" />
+    <div class="swiper-wrapper">
       <div
         v-for="image in images"
         :key="image._id"
@@ -72,6 +68,7 @@
         </div>
       </div>
     </div>
+    <div v-if="data.settings.showHeader" class="swiper-bordered mt-2" />
     <!-- Optional controls -->
     <div class="swiper-pagination" />
     <div class="swiper-button-prev" />
@@ -113,11 +110,17 @@ export default {
           prevEl: this.data.settings.arrows !== 'false' ? '.swiper-button-prev' : '.no-navigation'
         },
         breakpoints: {
-          480: {
-            slidesPerView: '2'
+          1024: {
+            slidesPerView: this.data.settings.slidesPerView > 4 ? '4' : this.data.settings.slidesPerView
           },
-          320: {
-            slidesPerView: '1'
+          991: {
+            slidesPerView: this.data.settings.slidesPerView > 3 ? '3' : this.data.settings.slidesPerView
+          },
+          768: {
+            slidesPerView: this.data.settings.slidesPerView > 2 ? '2' : this.data.settings.slidesPerView
+          },
+          480: {
+            slidesPerView: this.data.settings.forceMobileView || '1'
           }
         }
       }
@@ -178,9 +181,9 @@ export default {
   }
 }
 .swiper-bordered {
-  padding: 20px 0;
   border-top: 4px solid #004e97;
-  border-bottom: 4px solid #004e97;
+  min-height: 20px;
+  content: '';
 }
 .swiper-slide {
   .caption {

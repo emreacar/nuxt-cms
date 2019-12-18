@@ -19,7 +19,7 @@
         <div
           v-for="(v, index) in videos"
           :key="index"
-          class="col-12 col-md-3 mb-2"
+          class="col-6 col-md-3 mb-2"
         >
           <div v-on:click="playVideo(v.id.videoId)" class="h-100 yF-item">
             <div class="yF-thumb">
@@ -139,7 +139,6 @@ export default {
   .yF-title {
     font-size: .9rem;
     font-weight: 500;
-    margin-top: 10px;
   }
   .yF-meta {
     font-size: .8rem;

@@ -15,11 +15,11 @@
     </div>
 
     <div class="col-12 px-0">
-      <div class="row">
+      <div class="row px-2">
         <div
           v-for="(i, index) in images"
           :key="index"
-          class="col-3 col-md-2 insta-img"
+          class="col-4 col-sm-3 col-md-2 insta-img pl-1 pr-1 mb-2"
         >
           <img :src="i.thumbnail_src" v-on:click="popupImage(index)" class="img-fluid">
         </div>
