@@ -1,5 +1,5 @@
 <template>
-  <div v-if="contents.length" class="nR-wrapper row mt-4">
+  <div v-if="contents.length" class="nR-wrapper row mt-2">
     <div class="col-12 col-md-8 pr-md-1 nR-preview">
       <div ref="swiperTop" v-swiper:nrPreview="swiperPreviewOption">
         <div class="swiper-wrapper">
@@ -12,6 +12,7 @@
               :src="
                 storageDir +
                 c.modules.cover[0].path +
+                '/' +
                 c.modules.cover[0].filename
               "
               class="img-fluid"
@@ -56,6 +57,7 @@
                   :src="
                     storageDir +
                     c.modules.cover[0].path +
+                    '/' +
                     c.modules.cover[0].filename
                   "
                   class="img-fluid"

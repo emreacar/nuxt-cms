@@ -4,7 +4,7 @@
       v-if="
         data.settings.showHeader &&
           data.settings[appData.settings.defaultLang]"
-      class="col-12 g-module-header yF-header mb-3 py-2 shadow-lg"
+      class="col-12 g-module-header yF-header mb-2 py-2 shadow-lg"
     >
       <span class="module-header-icon">
         <i class="fab fa-youtube" />
@@ -14,12 +14,12 @@
       </span>
     </div>
 
-    <div class="col-12 px-0">
+    <div class="col-12">
       <div class="row">
         <div
           v-for="(v, index) in videos"
           :key="index"
-          class="col-6 col-md-3 mb-2"
+          class="col-6 col-md-3 mb-2 pr-1 pl-1"
         >
           <div v-on:click="playVideo(v.id.videoId)" class="h-100 yF-item">
             <div class="yF-thumb">

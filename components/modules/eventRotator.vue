@@ -4,7 +4,7 @@
       v-if="
         data.settings.showTitle &&
           data.settings[appData.settings.defaultLang]"
-      class="col-12 g-module-header yF-header mb-1 py-2 shadow-lg"
+      class="col-12 g-module-header yF-header mb-2 py-2 shadow-lg"
     >
       <span class="module-header-icon">
         <i class="fas fa-calendar-alt" />
@@ -14,7 +14,7 @@
       </span>
     </div>
 
-    <div class="col-12 px-0">
+    <div class="col-12 pl-1 pr-1">
       <div
         v-swiper:mySwiper="swiperOption"
         :class="[
@@ -199,7 +199,7 @@ export default {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9d9d9', endColorstr='#ffffff',GradientType=0 );
   background: linear-gradient(to top, rgb(217,217,217) 0%,rgb(255,255,255) 100%);
   padding: .5em .5em 0;
-  margin: .5em .1em;
+  margin: 0 .2em .5em 0;
     .e-date {
       border-bottom: 1px solid #000;
       color: #000;

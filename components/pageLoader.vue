@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable-next-line vue/require-component-is -->
-  <component v-if="importModule" v-bind:is="importModule" :data="data.content[data.page.type]" />
+  <component v-if="importModule" v-bind:is="importModule" :data="data.content[data.pageType]" />
 </template>
 
 <script>
@@ -8,16 +8,16 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => { return { page: {}, content: {} } }
+      default: () => { return { pageType: false, content: {} } }
     }
   },
   computed: {
     importModule () {
-      const loadData = this.data.content[this.data.page.type]
-      const loadPath = this.data.page.type !== 'module'
-        ? 'list/' + this.data.page.type
+      const loadData = this.data.content[this.data.pageType]
+      const loadPath = this.data.pageType !== 'module'
+        ? 'list/' + this.data.pageType
         : 'modules/' + loadData.module
-      if (!this.data.content[this.data.page.type]) {
+      if (!this.data.pageType || !this.data.content[this.data.pageType]) {
         return false
       }
       return () => import('@@/components/' + loadPath)

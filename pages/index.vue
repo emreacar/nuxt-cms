@@ -1,5 +1,5 @@
 <template>
-  <pageLoader :data="{page, content}" />
+  <pageLoader :data="{pageType: page.type, content}" />
 </template>
 
 <script>

@@ -4,7 +4,7 @@
       v-if="
         data.settings.showHeader &&
           data.settings[appData.settings.defaultLang]"
-      class="col-12 g-module-header yF-header mb-3 py-2 shadow-lg"
+      class="col-12 g-module-header yF-header mb-2 py-2 shadow-lg"
     >
       <span class="module-header-icon">
         <i class="fab fa-instagram" />
@@ -14,8 +14,8 @@
       </span>
     </div>
 
-    <div class="col-12 px-0">
-      <div class="row px-2">
+    <div class="col-12">
+      <div class="row">
         <div
           v-for="(i, index) in images"
           :key="index"

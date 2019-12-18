@@ -59,7 +59,7 @@
                 : '',
               !positions.CONTENT_LEFT.length &&
                 !positions.CONTENT_RIGHT.length
-                ? 'col-md-10'
+                ? 'col-md-12'
                 : ''
             ]"
           >
