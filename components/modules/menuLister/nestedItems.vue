@@ -65,13 +65,40 @@
         :src="storageDir + i.image"
         class="img-fluid"
       >
-      <a
+      <!--i.link || 'javascript:void(0);'-->
+      <nuxt-link
+        v-if="i.behavior !== 'link'"
         :class="[
           'mP-link',
           ( i.textAlign ? 'text-'+i.textAlign:'text-left' )
         ]"
-        :href="i.link || 'javascript:void(0);'"
+        :to="
+          i.behavior == 'page' && i.linkData && i.linkData._id
+            ? '/' + i.linkData.slug[appData.settings.defaultLang]
+          : i.behavior == 'category' && i.linkData && i.linkData._id
+            ? '/category' + i.linkData.slugs[appData.settings.defaultLang]
+          : i.behavior == 'content' && i.linkData && i.linkData._id
+            ? '/content' + i.linkData.content[appData.settings.defaultLang].slug
+          : 'javascript:void(0);'
+        "
+      >
+        <span v-if="i.showType && i.showType == 'icon'" class="mP-icon">
+          <img
+            v-if="i.showType && i.image && i.image !== '' && i.showType == 'icon'"
+            :src="storageDir + i.image"
+            class="img-fluid"
+          >
+        </span>
+        {{ i.name }}
+      </nuxt-link>
+      <a
+        v-else
+        :href="i.link"
         :target="i.target||'_self'"
+        :class="[
+          'mP-link',
+          ( i.textAlign ? 'text-'+i.textAlign:'text-left' )
+        ]"
       >
         <span v-if="i.showType && i.showType == 'icon'" class="mP-icon">
           <img
