@@ -20,12 +20,23 @@
           class="col-12 col-md-3 page-category-item mb-2 pl-1 pr-1"
         >
           <div class="position-relative shadow-sm">
-            <img :src="storageDir + c.modules.cover[0].path + '/' + c.modules.cover[0].filename" class="img-fluid">
+            <img v-if="c.modules.cover.length" :src="storageDir + c.modules.cover[0].path + '/' + c.modules.cover[0].filename" class="img-fluid">
             <div class="item-category">
               {{ c.category.titles[appData.settings.defaultLang] }}
             </div>
             <div class="item-title">
-              {{ c.content[appData.settings.defaultLang].title }}
+              <nuxt-link
+                :to="{
+                  name: 'content-slug',
+                  params: {
+                    slug: c.content[appData.settings.defaultLang].slug,
+                    content: c
+                  }
+                }
+                "
+              >
+                {{ c.content[appData.settings.defaultLang].title }}
+              </nuxt-link>
             </div>
             <div class="bg-mask" />
           </div>
@@ -76,6 +87,10 @@ export default {
         font-size: .8rem;
         color: #fff;
         z-index: 3;
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
       }
       .bg-mask {
         z-index: 2;

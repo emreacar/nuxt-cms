@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 bbs-logo col-md-4 pr-md-0">
-          <a class="logo">
+          <nuxt-link to="/" class="logo">
             <img
               :src="
                 storageDir +
@@ -14,7 +14,7 @@
               class="logo-img img-fluid"
               alt="logo"
             >
-          </a>
+          </nuxt-link>
         </div>
 
         <div class="col-12 col-md-8 ml-auto">

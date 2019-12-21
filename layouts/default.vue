@@ -11,18 +11,8 @@
     <div class="row mx-0">
       <div class="container">
         <div class="row">
-          <div
-            v-if="positions.CONTENT_TOP_LEFT.length"
-            class="col-12 col-md-6 position-contentTopLeft"
-          >
-            <contentTopLeft />
-          </div>
-          <div
-            v-if="positions.CONTENT_TOP_RIGHT.length"
-            class="col-12 col-md-6 position-contentTopRight"
-          >
-            <contentTopRight />
-          </div>
+          <contentTopLeft v-if="positions.CONTENT_TOP_LEFT.length" />
+          <contentTopRight v-if="positions.CONTENT_TOP_RIGHT.length" />
         </div>
       </div>
     </div>

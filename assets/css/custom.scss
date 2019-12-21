@@ -6,11 +6,11 @@ $dark:          #000000 ;
 $font-family-sans-serif: "Poppins", sans-serif;
 $font-weight-light: 300;
 $font-weight-normal: 400;
-$font-weight-bold: 500; 
+$font-weight-bold: 500;
 $headings-font-weight: 500;
 $font-weight-base: $font-weight-normal !default;
 
-//then bootstrap & bootstrap-vue should be added after 
+//then bootstrap & bootstrap-vue should be added after
 //so that they inherit the custom SCSS variables
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
@@ -35,6 +35,7 @@ $font-weight-base: $font-weight-normal !default;
   &.pos-headerNav {
     display: inline-block !important;
     width: auto !important;
+    text-align: left;
     &> .mP-item {
       padding: 6px 0px 0 12px !important;
     }
@@ -90,10 +91,24 @@ $font-weight-base: $font-weight-normal !default;
     .mP-level {
       width: auto;
       z-index: 12;
-
+      background: #102140;
       &.row {
         margin-left: 0;
         margin-right: 0;
+      }
+
+      .mP-item .mP-link {
+        padding: .5em;
+        color: #fff;
+        font-size: .8rem;
+        transition: all .3s;
+        font-weight: 500;
+
+        &:hover {
+          background: #fff;
+          color: #102140;
+          transition: all .3s;
+        }
       }
     }
   }

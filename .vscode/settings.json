@@ -7,5 +7,7 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
 	"prettier.trailingComma": "es5",
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.enablePreview": false
 }

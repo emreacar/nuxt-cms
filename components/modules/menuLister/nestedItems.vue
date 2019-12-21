@@ -9,7 +9,7 @@
         : '',
       dropdown.behavior &&
         root !== true
-        ? 'mP-dropdown-'+dropdown.behavior
+        ? 'shadow mP-dropdown-'+dropdown.behavior
         : '',
       dropdown.behavior &&
         dropdown.behavior == 'grid'

@@ -134,19 +134,7 @@ export default {
   mounted () {
     this.updateSlider()
   },
-  destroyed () {
-    this.mySwiper.off('slideChange')
-  },
   methods: {
-    slidePrev () {
-      this.mySwiper.slidePrev()
-    },
-    slideNext () {
-      this.mySwiper.slideNext()
-    },
-    slideGoIndex (index) {
-      this.mySwiper.slideTo(index)
-    },
     updateSlider () {
       if (this.data.settings.auto) {
         this.mySwiper.params.autoplay = {
