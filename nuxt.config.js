@@ -18,6 +18,9 @@ export default {
       { rel: 'stylesheet', href: '/css/fa.min.css' }
     ]
   },
+  router: {
+    middleware: 'stats'
+  },
   /*
   ** Customize the progress-bar color
   */
