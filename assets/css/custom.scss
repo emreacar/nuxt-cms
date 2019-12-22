@@ -27,6 +27,20 @@ $font-weight-base: $font-weight-normal !default;
   background: linear-gradient(0deg, #1d4895 45%, #ffffff 45%);
   .header-menu-pos { text-align: right; }
 }
+// table
+table.teamsTable {
+  font-size: .6em !important;
+  &.table-striped tbody tr:nth-of-type(odd) {
+    font-weight: 600;
+  }
+  .teamsHead tr th {
+    background: #fbfbfb;
+  }
+  tr.we-here {
+    color: #1d4895;
+    font-weight: 600;
+  }
+}
 // navigation
 .mP-root {
   position:relative;
