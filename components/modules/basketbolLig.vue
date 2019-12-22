@@ -176,7 +176,7 @@
             PUAN DURUMU
           </div>
           <b-table
-            ref="voleybolLigTable"
+            ref="basketbolLigTable"
             :items="teams"
             :fields="orderHeads"
             :tbody-tr-class="rowClass"
@@ -242,7 +242,7 @@ export default {
   methods: {
     async getModuleData () {
       const { teams, scorer } = await this.$store.dispatch('send', {
-        path: 'app/module/voleybolLig',
+        path: 'app/module/basketbolLig',
         data: {
           moduleData: {
             _id: this.data._id,
@@ -260,7 +260,7 @@ export default {
       this.loading = false
       /** change scroll position to ours teams offset */
       this.$nextTick(function () {
-        const tableId = this.$refs.voleybolLigTable.localId_
+        const tableId = this.$refs.basketbolLigTable.localId_
         const whereAreWe = document.querySelector(`table#${tableId} tr.we-here`)
         if (tableScrollDom.clientHeight < whereAreWe.offsetTop) {
           tableScrollDom.scrollTop = whereAreWe.offsetTop

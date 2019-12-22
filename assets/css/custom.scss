@@ -28,6 +28,10 @@ $font-weight-base: $font-weight-normal !default;
   .header-menu-pos { text-align: right; }
 }
 // table
+.b-table-sticky-header {
+  overflow-y: auto;
+  max-height: 286px !important;
+}
 table.teamsTable {
   font-size: .6em !important;
   &.table-striped tbody tr:nth-of-type(odd) {
@@ -35,6 +39,9 @@ table.teamsTable {
   }
   .teamsHead tr th {
     background: #fbfbfb;
+  }
+  tr td {
+    white-space: nowrap;
   }
   tr.we-here {
     color: #1d4895;
