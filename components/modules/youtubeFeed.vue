@@ -23,7 +23,7 @@
         >
           <div v-on:click="playVideo(v.id.videoId)" class="h-100 yF-item">
             <div class="yF-thumb">
-              <img :src="v.snippet.thumbnails.medium.url">
+              <img :data-src="v.snippet.thumbnails.medium.url" src="/placeholder.jpg" class="lazyload">
               <div class="play-icon">
                 <i class="fab fa-youtube" />
               </div>

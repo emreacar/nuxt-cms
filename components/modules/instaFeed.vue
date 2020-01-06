@@ -21,7 +21,7 @@
           :key="index"
           class="col-4 col-sm-3 col-md-2 insta-img pl-1 pr-1 mb-2"
         >
-          <img :src="i.thumbnail_src" v-on:click="popupImage(index)" class="img-fluid">
+          <img :data-src="i.thumbnail_src" v-on:click="popupImage(index)" class="img-fluid lazyload" src="/placeholder.jpg">
         </div>
       </div>
     </div>

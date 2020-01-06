@@ -15,7 +15,8 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap&subset=latin-ext' },
-      { rel: 'stylesheet', href: '/css/fa.min.css' }
+      { rel: 'stylesheet', href: '/css/fa.min.css' },
+      { rel: 'stylesheet', href: '/css/quill.core.css' }
     ]
   },
   router: {
@@ -38,6 +39,7 @@ export default {
   plugins: [
     '~/plugins/axios',
     '~/plugins/global',
+    '~/plugins/vue-lazysizes.client.js',
     { src: '~/plugins/swiper.js', ssr: false }
   ],
   /*
@@ -98,7 +100,11 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend (config, { isDev, isClient, loaders: { vue } }) {
+      if (isClient) {
+        vue.transformAssetUrls.img = ['data-src', 'src']
+        vue.transformAssetUrls.source = ['data-srcset', 'srcset']
+      }
     }
   }
 }

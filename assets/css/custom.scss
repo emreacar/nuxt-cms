@@ -15,6 +15,19 @@ $font-weight-base: $font-weight-normal !default;
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
 
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1360px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg {
+      max-width: 100% !important;
+  }
+}
+
+
 .page-enter-active, .page-leave-active {
   transition: opacity .5s;
 }
@@ -22,10 +35,45 @@ $font-weight-base: $font-weight-normal !default;
   opacity: 0;
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 // header
 .position-header {
   background: linear-gradient(0deg, #1d4895 45%, #ffffff 45%);
   .header-menu-pos { text-align: right; }
+}
+// footer
+footer {
+  margin-top: 80px;
+  .position-footer {
+    background: #054e97;
+    .f-block:not(:first-child) {
+      border-left: 3px solid #fff;
+    }
+    .s-items a{
+      display: block;
+      text-decoration: none;
+      clear: both;
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .copyright {
+      color: #fff;
+      font-size: .9rem;
+      margin-top: 30px;
+    }
+  }
+}
+// fixes
+.dropdown .btn:focus {
+  outline: none;
+  box-shadow: none !important;
 }
 // table
 .b-table-sticky-header {
@@ -53,6 +101,9 @@ table.teamsTable {
   position:relative;
   width: 100%;
   display: block;
+  p {
+    margin: 0;
+  }
   &.pos-headerNav {
     display: inline-block !important;
     width: auto !important;
@@ -79,6 +130,39 @@ table.teamsTable {
 
 .mP-level {
   display: inline-block;
+  &.mP-vertical {
+    &.onFooter {
+      &> .mP-item {
+        &>.mP-link {
+          text-decoration: none;
+          color: #fff;
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
+    }
+    &:not(.onFooter) {
+      height: 100%;
+      background: linear-gradient(0deg, #b4b4b4 0%, #ffffff 100%);
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+      border-radius: 12px;
+      padding: 1rem .5rem;
+      &> .mP-item {
+        margin-bottom: .5rem;
+        &>.mP-link {
+          text-decoration: none;
+          color: #000;
+          font-weight: 500;
+          transition: color .3s;
+          cursor: pointer;
+          &:hover {
+            color: #1d4895;
+            transition: color .3s;
+          }
+        }
+      }
+    }
+  }
   &.mP-horizontal > .mP-item {
     display: inline-block;
   }

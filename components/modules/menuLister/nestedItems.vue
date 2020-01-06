@@ -19,7 +19,12 @@
         root !== true
         ? 'mP-dropdown-list'
         : '',
-      ( root===true ? ' mP-' + (config.orientation || 'horizontal' ) : '' ),
+      ( root===true && position !== 'footer'
+        ? 'mP-' + (config.orientation || 'horizontal' )
+        : root===true
+          ? 'mP-vertical onFooter'
+          : ''
+      ),
       ( root===true ? 'mP-root' : '' ),
       ( root!==true &&
         dropdown.trigger
@@ -67,7 +72,7 @@
       >
       <!--i.link || 'javascript:void(0);'-->
       <nuxt-link
-        v-if="i.behavior !== 'link'"
+        v-if="['link', 'html'].indexOf(i.behavior) == -1"
         :class="[
           'mP-link',
           ( i.textAlign ? 'text-'+i.textAlign:'text-left' )
@@ -92,7 +97,7 @@
         {{ i.name }}
       </nuxt-link>
       <a
-        v-else
+        v-else-if="i.behavior == 'link'"
         :href="i.link"
         :target="i.target||'_self'"
         :class="[
@@ -110,7 +115,10 @@
         {{ i.name }}
       </a>
 
+      <div v-else-if="i.behavior == 'html'" v-html="i.htmlContent" class="ql-editor mb-4" />
+
       <nested-items
+        v-if="position !== 'footer'"
         :items="i.childrens"
         :config="config"
         :root="false"
@@ -142,7 +150,7 @@ export default {
     },
     position: {
       type: String,
-      default: () => { return '' }
+      default: () => { return 'default' }
     }
   }
 }

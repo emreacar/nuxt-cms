@@ -20,7 +20,12 @@
           class="col-12 col-md-3 page-category-item mb-2 pl-1 pr-1"
         >
           <div class="position-relative shadow-sm">
-            <img v-if="c.modules.cover.length" :src="storageDir + c.modules.cover[0].path + '/' + c.modules.cover[0].filename" class="img-fluid">
+            <img
+              v-if="c.modules.cover.length"
+              :data-src="storageDir + c.modules.cover[0].path + '/' + c.modules.cover[0].filename"
+              src="/placeholder.jpg"
+              class="img-fluid lazyload"
+            >
             <div class="item-category">
               {{ c.category.titles[appData.settings.defaultLang] }}
             </div>

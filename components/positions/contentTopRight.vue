@@ -2,19 +2,20 @@
   <div
     v-if="modules.length"
     :class="[
-      'col-12',
+      'col-12 pl-sm-1',
       modules[0].settings.colSM ? 'col-sm-' + modules[0].settings.colSM : '',
       modules[0].settings.colMD ? 'col-md-' + modules[0].settings.colMD : '',
-      modules[0].settings.colLG ? 'col-lg-' + modules[0].settings.colLG : ''
+      modules[0].settings.colLG ? 'col-lg-' + modules[0].settings.colLG : '',
+      modules[0].settings.colXL ? 'col-xl-' + modules[0].settings.colXL : ''
     ]"
   >
-    <div class="row">
+    <div class="row h-100">
       <div
         v-for="m in modules"
         :key="m._id"
         class="col-12 mb-2"
       >
-        <dynamic-loader :data="m" />
+        <dynamic-loader :data="m" position="contentTopRight" />
       </div>
     </div>
   </div>

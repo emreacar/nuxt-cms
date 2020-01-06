@@ -1,6 +1,11 @@
 <template>
-  <div v-if="contents.length" class="nR-wrapper row mt-2">
-    <div class="col-12 col-md-8 pr-md-1 nR-preview">
+  <div v-if="contents.length" class="nR-wrapper row">
+    <div
+      :class="[
+        'col-12 pr-md-1 nR-preview',
+        position == 'contentTopRight' ? 'col-md-7' : 'col-md-8'
+      ]"
+    >
       <div ref="swiperTop" v-swiper:nrPreview="swiperPreviewOption">
         <div class="swiper-wrapper">
           <div
@@ -9,13 +14,14 @@
             class="swiper-slide"
           >
             <img
-              :src="
+              :data-src="
                 storageDir +
                 c.modules.cover[0].path +
                 '/' +
                 c.modules.cover[0].filename
               "
-              class="img-fluid"
+              src="/placeholder.jpg"
+              class="img-fluid lazyload"
             >
             <div class="caption">
               <h1 v-if="c.content[appData.settings.defaultLang]">
@@ -29,13 +35,22 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-4 pl-md-1 nR-thumbs">
-      <div v-if="data.settings.showTitle == 'true'" class="nR-header">
+    <div
+      :class="[
+        'col-12 pl-md-1 nR-thumbs',
+        position == 'contentTopRight' ? 'col-md-5' : 'col-md-4'
+      ]"
+    >
+      <div ref="nrHeader" v-if="data.settings.showTitle == 'true'" class="nR-header">
         <h1>
           {{ data.settings[appData.settings.defaultLang] }}
         </h1>
       </div>
-      <div ref="swiperThumbs" v-swiper:nrItems="swiperItemsOption" style="max-height: 380px">
+      <div
+        ref="swiperThumbs"
+        v-swiper:nrItems="swiperItemsOption"
+        :style="{maxHeight: maxHeight + 'px'}"
+      >
         <div class="swiper-wrapper">
           <div
             v-for="c in contents"
@@ -54,13 +69,14 @@
 
               <div v-if="c.modules.cover.length" class="col-12 col-md-4 py-2 pl-0">
                 <img
-                  :src="
+                  :data-src="
                     storageDir +
                     c.modules.cover[0].path +
                     '/' +
                     c.modules.cover[0].filename
                   "
-                  class="img-fluid"
+                  src="/placeholder.jpg"
+                  class="img-fluid lazyload"
                 >
               </div>
             </div>
@@ -88,27 +104,32 @@ export default {
     data: {
       type: Object,
       default: () => { return {} }
+    },
+    position: {
+      type: String,
+      default: () => { return 'default' }
     }
   },
   data () {
     return {
       loading: true,
       stripRegex: /(<([^>]+)>)/ig,
+      maxHeight: 325,
       contents: [],
       swiperPreviewOption: {
         speed: 600,
         effect: 'fade',
         loop: {
-          loopedSlides: 4
+          loopedSlides: this.position === 'contentTopRight' ? 3 : 4
         },
-        loopedSlides: 4,
+        loopedSlides: this.position === 'contentTopRight' ? 3 : 4,
         slidesPerView: 1
       },
       swiperItemsOption: {
         loop: {
-          loopedSlides: 4
+          loopedSlides: this.position === 'contentTopRight' ? 3 : 4
         },
-        loopedSlides: 4,
+        loopedSlides: this.position === 'contentTopRight' ? 3 : 4,
         slideToClickedSlide: true,
         speed: 600,
         autoplay: {
@@ -119,7 +140,7 @@ export default {
           nextEl: '.nav-arrow-next',
           prevEl: '.nav-arrow-prev'
         },
-        slidesPerView: 4,
+        slidesPerView: this.position === 'contentTopRight' ? 3 : 4,
         watchSlidesVisibility: true
       }
     }
@@ -145,8 +166,15 @@ export default {
         if (this.contents.length > 0) {
           const swiperTop = this.$refs.swiperTop.swiper
           const swiperThumbs = this.$refs.swiperThumbs.swiper
+
           swiperTop.controller.control = swiperThumbs
           swiperThumbs.controller.control = swiperTop
+
+          setTimeout(() => {
+            const swTopHeight = this.$refs.swiperTop.swiper.height
+            const nrHeaderHeight = this.$refs.nrHeader.clientHeight
+            this.maxHeight = swTopHeight - nrHeaderHeight - 3
+          }, 300)
         }
       })
     }

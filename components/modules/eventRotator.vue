@@ -43,8 +43,9 @@
               <div class="row e-content mt-1">
                 <div v-if="event.modules.cover.length > 0" class="col-6 pr-1">
                   <img
-                    :src="storageDir + event.modules.cover[0].path + '/' +event.modules.cover[0].filename"
-                    class="img-fluid rounded"
+                    :data-src="storageDir + event.modules.cover[0].path + '/' +event.modules.cover[0].filename"
+                    src="/placeholder.jpg"
+                    class="img-fluid rounded lazyload"
                   >
                 </div>
                 <div

@@ -1,5 +1,5 @@
 <template>
-  <div class="row mx-0 my-2 position-header">
+  <div class="row mx-0 mt-2 mb-4 position-header">
     <div class="container">
       <div class="row">
         <div class="col-12 bbs-logo col-md-4 pr-md-0">
