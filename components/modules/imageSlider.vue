@@ -70,7 +70,7 @@
     </div>
     <div v-if="data.settings.showHeader" class="swiper-bordered mt-2" />
     <!-- Optional controls -->
-    <div class="swiper-pagination" />
+    <div v-if="data.settings.pagination === 'true'" class="swiper-pagination" />
     <div class="swiper-button-prev" />
     <div class="swiper-button-next" />
   </div>
@@ -88,10 +88,6 @@ export default {
   },
   data () {
     return {
-      pagination: {
-        total: 0,
-        current: 0
-      },
       swiperOption: {
         loop: false,
         direction: 'horizontal',

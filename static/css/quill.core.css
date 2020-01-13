@@ -42,6 +42,11 @@
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.ql-editor.ql-content {
+  padding: 12px 0 !important;
+  height: auto !important;
+  width: 100%;
+}
 .ql-editor > * {
   cursor: text;
 }

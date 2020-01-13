@@ -6,6 +6,7 @@
 import pageLoader from '@@/components/pageLoader'
 
 export default {
+  scrollToTop: true,
   components: {
     pageLoader
   },
@@ -13,6 +14,7 @@ export default {
     const { page, content, modules } = await app.$axios.$get('page/main')
     store.commit('setPage', page)
     store.commit('setModules', modules)
+    store.commit('setCrumb', [])
 
     return {
       page,

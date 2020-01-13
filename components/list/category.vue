@@ -19,32 +19,37 @@
           :key="c._id"
           class="col-12 col-md-3 page-category-item mb-2 pl-1 pr-1"
         >
-          <div class="position-relative shadow-sm">
-            <img
-              v-if="c.modules.cover.length"
-              :data-src="storageDir + c.modules.cover[0].path + '/' + c.modules.cover[0].filename"
-              src="/placeholder.jpg"
-              class="img-fluid lazyload"
-            >
-            <div class="item-category">
-              {{ c.category.titles[appData.settings.defaultLang] }}
-            </div>
-            <div class="item-title">
-              <nuxt-link
-                :to="{
-                  name: 'content-slug',
-                  params: {
-                    slug: c.content[appData.settings.defaultLang].slug,
-                    content: c
-                  }
-                }
-                "
+          <nuxt-link
+            :to="{
+              name: 'content-slug',
+              params: {
+                slug: c.content[appData.settings.defaultLang].slug,
+                content: c
+              }
+            }
+            "
+          >
+            <div class="position-relative shadow-sm">
+              <img
+                v-if="c.modules.cover.length"
+                :data-src="storageDir + c.modules.cover[0].path + '/' + c.modules.cover[0].filename"
+                src="/placeholder.jpg"
+                class="img-fluid lazyload"
               >
+              <img
+                v-else
+                src="/placeholder.jpg"
+                class="img-fluid"
+              >
+              <div class="item-category">
+                {{ c.category.titles[appData.settings.defaultLang] }}
+              </div>
+              <div class="item-title">
                 {{ c.content[appData.settings.defaultLang].title }}
-              </nuxt-link>
+              </div>
+              <div class="bg-mask" />
             </div>
-            <div class="bg-mask" />
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -68,8 +73,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-category
-  .page-category-item
+.page-category {
+  .page-category-item {
     .position-relative {
       border-radius: 12px;
       img {
@@ -89,7 +94,7 @@ export default {
         left: 0px;
         padding-left: 5px;
         padding-right: 5px;
-        font-size: .8rem;
+        font-size: 1rem;
         color: #fff;
         z-index: 3;
         a {
@@ -115,4 +120,20 @@ export default {
         background: linear-gradient(to top, rgba(28,59,122, 1) 15%,rgba(28,59,122, 0) 100%);
       }
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .page-category .page-category-item .position-relative {
+    .item-category {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      font-size: .9rem;
+    }
+    .item-title {
+      font-size: 1.2em;
+    }
+  }
+}
 </style>

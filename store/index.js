@@ -12,7 +12,8 @@ export const state = () => ({
     CONTENT_BOTTOM_LEFT: [],
     CONTENT_BOTTOM_RIGHT: []
   },
-  modules: {}
+  modules: {},
+  pagePath: []
 })
 
 export const mutations = {
@@ -23,6 +24,17 @@ export const mutations = {
         state.positions[position] = page.modules[position]
       })
     }
+  },
+  setCrumb (state, paths = []) {
+    state.pagePath = []
+    paths.forEach((p) => {
+      if (!p.isMain) {
+        state.pagePath.push({
+          to: p.slug[state.appData.settings.defaultLang],
+          title: p.title[state.appData.settings.defaultLang]
+        })
+      }
+    })
   },
   setModules (state, modules) {
     state.modules = modules

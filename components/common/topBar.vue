@@ -54,7 +54,7 @@
     .c-item {
       display: inline-block;
       &:first-child {
-        margin-right: 40px;
+        margin-right: 20px;
       }
     }
 }

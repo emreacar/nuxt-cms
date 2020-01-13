@@ -2,7 +2,7 @@
   <div
     v-if="modules.length"
     :class="[
-      'col-12 pl-sm-1',
+      'col-12 pl-md-0',
       modules[0].settings.colSM ? 'col-sm-' + modules[0].settings.colSM : '',
       modules[0].settings.colMD ? 'col-md-' + modules[0].settings.colMD : '',
       modules[0].settings.colLG ? 'col-lg-' + modules[0].settings.colLG : '',

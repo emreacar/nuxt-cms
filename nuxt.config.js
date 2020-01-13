@@ -24,8 +24,12 @@ export default {
   },
   /*
   ** Customize the progress-bar color
+  ** I dont't know why, but when using custom loading screen, page transition brokes
   */
-  loading: { color: '#000' },
+  //loading: '~/components/loading.vue',
+  loading: {
+    color: '#1d4895'
+  },
   /*
   ** Global CSS
   */
@@ -40,7 +44,9 @@ export default {
     '~/plugins/axios',
     '~/plugins/global',
     '~/plugins/vue-lazysizes.client.js',
-    { src: '~/plugins/swiper.js', ssr: false }
+    { src: '~plugins/ga.js', mode: 'client' },
+    { src: '~/plugins/swiper.js', ssr: false },
+    { src: "~/plugins/gmap.js", ssr: true }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -97,6 +103,7 @@ export default {
   */
   build: {
     extractCSS: true,
+    transpile: [/^vue2-google-maps($|\/)/],
     /*
     ** You can extend webpack config here
     */

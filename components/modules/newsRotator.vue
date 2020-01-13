@@ -3,7 +3,7 @@
     <div
       :class="[
         'col-12 pr-md-1 nR-preview',
-        position == 'contentTopRight' ? 'col-md-7' : 'col-md-8'
+        position == 'contentTopRight' ? 'col-lg-7' : 'col-md-8'
       ]"
     >
       <div ref="swiperTop" v-swiper:nrPreview="swiperPreviewOption">
@@ -13,24 +13,35 @@
             :key="c._id"
             class="swiper-slide"
           >
-            <img
-              :data-src="
-                storageDir +
-                c.modules.cover[0].path +
-                '/' +
-                c.modules.cover[0].filename
+            <nuxt-link
+              :to="{
+                name: 'content-slug',
+                params: {
+                  slug: c.content[appData.settings.defaultLang].slug,
+                  content: c
+                }
+              }
               "
-              src="/placeholder.jpg"
-              class="img-fluid lazyload"
             >
-            <div class="caption">
-              <h1 v-if="c.content[appData.settings.defaultLang]">
-                {{ c.content[appData.settings.defaultLang].title }}
-              </h1>
-              <p>
-                {{ c.content[appData.settings.defaultLang].content.replace(stripRegex, "").substr(0, 75) }}
-              </p>
-            </div>
+              <img
+                :data-src="
+                  storageDir +
+                  c.modules.cover[0].path +
+                  '/' +
+                  c.modules.cover[0].filename
+                "
+                src="/placeholder.jpg"
+                class="img-fluid lazyload"
+              >
+              <div class="caption">
+                <h1 v-if="c.content[appData.settings.defaultLang]">
+                  {{ c.content[appData.settings.defaultLang].title }}
+                </h1>
+                <p>
+                  {{ c.content[appData.settings.defaultLang].content.replace(stripRegex, "").substr(0, 75) }}
+                </p>
+              </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -38,10 +49,10 @@
     <div
       :class="[
         'col-12 pl-md-1 nR-thumbs',
-        position == 'contentTopRight' ? 'col-md-5' : 'col-md-4'
+        position == 'contentTopRight' ? 'col-lg-5' : 'col-md-4'
       ]"
     >
-      <div ref="nrHeader" v-if="data.settings.showTitle == 'true'" class="nR-header">
+      <div ref="nrHeader" v-if="data.settings.showTitle == 'true'" class="nR-header d-none d-md-block">
         <h1>
           {{ data.settings[appData.settings.defaultLang] }}
         </h1>
@@ -58,7 +69,7 @@
             class="swiper-slide"
           >
             <div class="row mx-2 my-1 py-1 align-items-center">
-              <div class="col-12 col-md-8 nR-caption">
+              <div class="col-8 d-none d-md-block nR-caption">
                 <p v-if="c.content[appData.settings.defaultLang]" class="nR-title text-truncate">
                   {{ c.content[appData.settings.defaultLang].title }}
                 </p>
@@ -67,7 +78,7 @@
                 </p>
               </div>
 
-              <div v-if="c.modules.cover.length" class="col-12 col-md-4 py-2 pl-0">
+              <div v-if="c.modules.cover.length" class="col-12 col-md-4 py-md-2">
                 <img
                   :data-src="
                     storageDir +
@@ -85,7 +96,7 @@
       </div>
 
       <!-- navigation arrows -->
-      <div class="nav-arrows">
+      <div class="nav-arrows d-none d-md-block">
         <button class="nav-arrow-button nav-arrow-next">
           <i class="fas fa-angle-down" />
         </button>
@@ -118,12 +129,16 @@ export default {
       contents: [],
       swiperPreviewOption: {
         speed: 600,
-        effect: 'fade',
+        effect: 'slide',
         loop: {
           loopedSlides: this.position === 'contentTopRight' ? 3 : 4
         },
         loopedSlides: this.position === 'contentTopRight' ? 3 : 4,
-        slidesPerView: 1
+        slidesPerView: 1,
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets'
+        }
       },
       swiperItemsOption: {
         loop: {
@@ -135,13 +150,27 @@ export default {
         autoplay: {
           delay: this.data.settings.time || 5000
         },
+        on: {
+          resize: () => {
+            this.swiperInit()
+          }
+        },
         direction: 'vertical',
         navigation: {
           nextEl: '.nav-arrow-next',
           prevEl: '.nav-arrow-prev'
         },
         slidesPerView: this.position === 'contentTopRight' ? 3 : 4,
-        watchSlidesVisibility: true
+        watchSlidesVisibility: true,
+        breakpoints: {
+          480: {
+            slidesPerView: 3,
+            loopedSlides: 3,
+            loop: {
+              loopedSlides: 3
+            }
+          }
+        }
       }
     }
   },
@@ -149,6 +178,27 @@ export default {
     this.getModuleData()
   },
   methods: {
+    swiperInit () {
+      if (this.contents.length > 0) {
+        const swiperTop = this.$refs.swiperTop.swiper
+        const swiperThumbs = this.$refs.swiperThumbs.swiper
+
+        swiperTop.controller.control = swiperThumbs
+        swiperThumbs.controller.control = swiperTop
+        if (window.innerWidth <= 991) {
+          swiperThumbs.changeDirection('horizontal')
+        } else {
+          swiperThumbs.changeDirection('vertical')
+        }
+        setTimeout(() => {
+          const swTopHeight = this.$refs.swiperTop.swiper.height
+          const nrHeaderHeight = this.$refs.nrHeader.clientHeight
+          this.maxHeight = swTopHeight - nrHeaderHeight - 3
+
+          swiperThumbs.updateSize()
+        }, 300)
+      }
+    },
     async getModuleData () {
       const { contents } = await this.$store.dispatch('send', {
         path: 'page/contents',
@@ -163,19 +213,7 @@ export default {
       this.contents = contents
       this.loading = false
       this.$nextTick(() => {
-        if (this.contents.length > 0) {
-          const swiperTop = this.$refs.swiperTop.swiper
-          const swiperThumbs = this.$refs.swiperThumbs.swiper
-
-          swiperTop.controller.control = swiperThumbs
-          swiperThumbs.controller.control = swiperTop
-
-          setTimeout(() => {
-            const swTopHeight = this.$refs.swiperTop.swiper.height
-            const nrHeaderHeight = this.$refs.nrHeader.clientHeight
-            this.maxHeight = swTopHeight - nrHeaderHeight - 3
-          }, 300)
-        }
+        this.swiperInit()
       })
     }
   }
@@ -288,6 +326,39 @@ export default {
       font-size: 2em;
       line-height: 1em;
       color: #2750aa;
+    }
+  }
+}
+@media (min-width: 425px) and (max-width: 767px) {
+ .nR-thumbs {
+   .swiper-slide {
+     .row {
+       border: none;
+       border-radius: 0px !important;
+       background: none !important;
+       box-shadow: none !important;
+      .col-12 {
+        padding: 0 !important;
+        img {
+          box-shadow: 0px 1px 3px 0.07px rgba(64, 64, 64, 0.86);
+          border-radius: 12px;
+        }
+      }
+     }
+   }
+ }
+}
+@media (max-width: 425px) {
+  .nR-wrapper {
+    .nR-preview {
+      .caption {
+        h1 {
+          font-size: 1rem;
+        }
+        p {
+          font-size: 0.8rem;
+        }
+      }
     }
   }
 }

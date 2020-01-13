@@ -6,12 +6,29 @@
     <div class="row mx-0 position-footer py-4">
       <div class="container">
         <div class="row align-items-center justify-content-center">
-          <div class="col-12 col-md-auto f-block">
-            A
+          <div class="col-12 text-center mb-4">
+            <div class="px-4 w-100">
+              <dynamic-loader
+                v-for="m in mainFooterModule"
+                :key="m._id"
+                :data="m"
+                position="footer"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+          <div
+            v-for="m in positionsModules"
+            :key="m._id"
+            class="col-12 col-md-4 f-block"
+            style="max-width: 400px"
+          >
+            <dynamic-loader :data="m" />
           </div>
           <div
             v-if="appData.settings && appData.settings.social"
-            class="col-12 col-md-auto f-block"
+            class="col-12 col-md-4 f-block"
           >
             <div class="w-100 px-4 s-items">
               <a
@@ -25,23 +42,6 @@
                 {{ social }}
               </a>
             </div>
-          </div>
-          <div class="col-12 col-md-auto f-block">
-            <div class="px-4 w-100">
-              <dynamic-loader
-                v-for="m in mainFooterModule"
-                :key="m._id"
-                :data="m"
-                position="footer"
-              />
-            </div>
-          </div>
-          <div class="col-12 col-md-auto f-block">
-            <dynamic-loader
-              v-for="m in positionsModules"
-              :key="m._id"
-              :data="m"
-            />
           </div>
         </div>
         <div class="row">

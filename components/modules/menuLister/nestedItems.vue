@@ -49,15 +49,12 @@
     ]"
   >
     <div
-      v-for="(i, index) in items"
+      v-for="i in items"
       :key="i.version"
       :class="[
         'mP-item',
-        root === true &&
-          index === 0
-          ? 'active'
-          : '',
         dropdown.behavior && dropdown.behavior == 'grid' ? 'col-'+(i.dropdown.grid_xs || 12) + ' col-md-'+(i.dropdown.grid_md || 'auto') : '',
+        i.hideOnMobile && i.hideOnMobile === 'true' ? 'hideOnMobile' : ''
       ]"
     >
       <img
@@ -75,7 +72,9 @@
         v-if="['link', 'html'].indexOf(i.behavior) == -1"
         :class="[
           'mP-link',
-          ( i.textAlign ? 'text-'+i.textAlign:'text-left' )
+          ( root !== true ? 'mP-subLink' : '' ),
+          ( i.textAlign ? 'text-'+i.textAlign:'text-left' ),
+          ( i.childrens && i.childrens.length > 0 ? 'has-childs' : '')
         ]"
         :to="
           i.behavior == 'page' && i.linkData && i.linkData._id
@@ -102,7 +101,8 @@
         :target="i.target||'_self'"
         :class="[
           'mP-link',
-          ( i.textAlign ? 'text-'+i.textAlign:'text-left' )
+          ( i.textAlign ? 'text-'+i.textAlign:'text-left' ),
+          ( i.childrens && i.childrens.length > 0 ? 'has-childs' : '')
         ]"
       >
         <span v-if="i.showType && i.showType == 'icon'" class="mP-icon">
@@ -118,7 +118,7 @@
       <div v-else-if="i.behavior == 'html'" v-html="i.htmlContent" class="ql-editor mb-4" />
 
       <nested-items
-        v-if="position !== 'footer'"
+        v-if="position !== 'footer' && i.childrens.length"
         :items="i.childrens"
         :config="config"
         :root="false"

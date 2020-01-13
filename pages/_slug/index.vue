@@ -6,17 +6,18 @@
 import pageLoader from '@@/components/pageLoader'
 
 export default {
+  scrollToTop: true,
   components: {
     pageLoader
   },
   async asyncData ({ store, app, params, error }) {
-    const { page } = await app.$axios.$get('page/link',
+    const { page, pagePath } = await app.$axios.$get('page/link',
       { params: { slug: params.slug } })
-    if (page) {
+    if (page && page.page) {
       store.commit('setPage', page.page)
       store.commit('setModules', page.modules)
+      store.commit('setCrumb', pagePath)
     }
-
     return {
       page: page ? page.page : false,
       content: page ? page.content : false

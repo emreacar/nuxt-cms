@@ -172,4 +172,16 @@ export default {
     }
   }
 }
+@media (max-width: 425px) {
+  .yF-item {
+    .yF-title {
+      font-size: .8rem;
+      font-weight: 400;
+    }
+    .yF-meta {
+      font-size: .6rem;
+      color: #5e6062;
+    }
+  }
+}
 </style>

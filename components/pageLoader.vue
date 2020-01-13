@@ -17,6 +17,7 @@ export default {
       const loadPath = this.data.pageType !== 'module'
         ? 'list/' + this.data.pageType
         : 'modules/' + loadData.module
+
       if (!this.data.pageType || !this.data.content[this.data.pageType]) {
         return false
       }

@@ -218,19 +218,19 @@ export default {
           label: 'TAKIM'
         },
         {
-          key: 'point_O',
-          label: 'O'
+          key: 'point_Mac',
+          label: 'Maç'
         },
         {
-          key: 'point_G',
+          key: 'point_Galibiyet',
           label: 'G'
         },
         {
-          key: 'point_M',
+          key: 'point_Maglubiyet',
           label: 'M'
         },
         {
-          key: 'point_P',
+          key: 'point_Puan',
           label: 'P'
         }
       ]
