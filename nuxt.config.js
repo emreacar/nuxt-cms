@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('./config');
 
 export default {
   mode: 'universal',

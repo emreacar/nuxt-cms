@@ -12,6 +12,14 @@
       <span class="ml-2">
         {{ data.settings[appData.settings.defaultLang] }}
       </span>
+      <a
+        :href="'https://www.instagram.com/' + data.settings.link"
+        target="_blank"
+        class="btn btn-sm btn-danger float-right"
+      >
+        <i class="fab fa-instagram" />
+        ABONE OL
+      </a>
     </div>
 
     <div class="col-12">

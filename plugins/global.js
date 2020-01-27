@@ -33,11 +33,10 @@ Vue.mixin({
       }
 
       const network = links[target]
-
       network.href = network.href
         .replace(
           '%url%',
-          'http://localhost:3000' + this.$route.fullPath
+          window.location.href
         )
         .replace(
           '%title%',

@@ -1,18 +1,18 @@
 <template>
   <div class="row mx-0 page-category justify-content-center">
     <div
-      v-if="page.customParams && page.customParams.headerTitle"
-      class="col-12 g-module-header mb-2 py-2 shadow-lg"
+      v-if="data.settings.showTitle && data.settings[appData.settings.defaultLang]"
+      class="col-12 g-module-header yF-header mb-2 py-2 shadow-lg"
     >
-      <span v-if="page.customParams.headerIcon" class="module-header-icon mr-2">
-        <i :class="page.customParams.headerIcon[appData.settings.defaultLang]" />
+      <span v-if="data.settings.icon" class="module-header-icon mr-2">
+        <i :class="data.settings.icon" />
       </span>
       <span>
-        {{ page.customParams.headerTitle[appData.settings.defaultLang] }}
+        {{ data.settings[appData.settings.defaultLang] }}
       </span>
     </div>
 
-    <div v-for="(content, pi) in data" :key="pi" class="col-12 my-2">
+    <div v-for="(content, pi) in data.content" :key="pi" class="col-12 my-2">
       <div class="row">
         <div class="col-12 col-md-5 col-lg-4">
           <img
@@ -128,18 +128,13 @@
 export default {
   props: {
     data: {
-      type: Array,
-      default: () => { return [] }
+      type: Object,
+      default: () => { return {} }
     }
   },
   data () {
     return {
       currentImage: 0
-    }
-  },
-  computed: {
-    page () {
-      return this.$store.state.page
     }
   },
   methods: {

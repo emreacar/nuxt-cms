@@ -1,11 +1,6 @@
 <template>
   <div v-if="contents.length" class="nR-wrapper row">
-    <div
-      :class="[
-        'col-12 pr-md-1 nR-preview',
-        position == 'contentTopRight' ? 'col-lg-7' : 'col-md-8'
-      ]"
-    >
+    <div class="col-12 pr-md-1 nR-preview col-md-8">
       <div ref="swiperTop" v-swiper:nrPreview="swiperPreviewOption">
         <div class="swiper-wrapper">
           <div
@@ -46,12 +41,7 @@
         </div>
       </div>
     </div>
-    <div
-      :class="[
-        'col-12 pl-md-1 nR-thumbs',
-        position == 'contentTopRight' ? 'col-lg-5' : 'col-md-4'
-      ]"
-    >
+    <div class="col-12 col-md-4 pl-md-1 nR-thumbs">
       <div ref="nrHeader" v-if="data.settings.showTitle == 'true'" class="nR-header d-none d-md-block">
         <h1>
           {{ data.settings[appData.settings.defaultLang] }}
@@ -78,7 +68,7 @@
                 </p>
               </div>
 
-              <div v-if="c.modules.cover.length" class="col-12 col-md-4 py-md-2">
+              <div v-if="c.modules.cover.length" class="col-12 col-md-4 px-2">
                 <img
                   :data-src="
                     storageDir +
@@ -131,20 +121,34 @@ export default {
         speed: 600,
         effect: 'slide',
         loop: {
-          loopedSlides: this.position === 'contentTopRight' ? 3 : 4
+          loopedSlides: 5
         },
-        loopedSlides: this.position === 'contentTopRight' ? 3 : 4,
+        loopedSlides: 5,
         slidesPerView: 1,
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets'
+        },
+        breakpoints: {
+          480: {
+            loopedSlides: 3,
+            loop: {
+              loopedSlides: 3
+            }
+          },
+          880: {
+            loopedSlides: 4,
+            loop: {
+              loopedSlides: 4
+            }
+          }
         }
       },
       swiperItemsOption: {
         loop: {
-          loopedSlides: this.position === 'contentTopRight' ? 3 : 4
+          loopedSlides: 5
         },
-        loopedSlides: this.position === 'contentTopRight' ? 3 : 4,
+        loopedSlides: 5,
         slideToClickedSlide: true,
         speed: 600,
         autoplay: {
@@ -160,7 +164,7 @@ export default {
           nextEl: '.nav-arrow-next',
           prevEl: '.nav-arrow-prev'
         },
-        slidesPerView: this.position === 'contentTopRight' ? 3 : 4,
+        slidesPerView: 5,
         watchSlidesVisibility: true,
         breakpoints: {
           480: {
@@ -168,6 +172,13 @@ export default {
             loopedSlides: 3,
             loop: {
               loopedSlides: 3
+            }
+          },
+          880: {
+            slidesPerView: 4,
+            loopedSlides: 4,
+            loop: {
+              loopedSlides: 4
             }
           }
         }
@@ -185,11 +196,12 @@ export default {
 
         swiperTop.controller.control = swiperThumbs
         swiperThumbs.controller.control = swiperTop
-        if (window.innerWidth <= 991) {
+        if (window.innerWidth < 768) {
           swiperThumbs.changeDirection('horizontal')
         } else {
           swiperThumbs.changeDirection('vertical')
         }
+
         setTimeout(() => {
           const swTopHeight = this.$refs.swiperTop.swiper.height
           const nrHeaderHeight = this.$refs.nrHeader.clientHeight
@@ -267,7 +279,7 @@ export default {
     .swiper-slide {
       .row {
         border: 2px solid #fff;
-        border-radius: 6px;
+        border-radius: 12px;
         background: #ffffff;
         background: -moz-linear-gradient(top, #d0d0d0 0%, #ffffff 100%);
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d0d0d0), color-stop(100%,#ffffff));
@@ -292,7 +304,7 @@ export default {
           }
         }
         img {
-          border-radius: 6px;
+          border-radius: 12px;
         }
       }
 

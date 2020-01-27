@@ -1,5 +1,5 @@
 <template>
-  <div class="row mx-0">
+  <div class="row mx-0 h-100">
     <div
       v-if="
         data.settings.showHeader &&
@@ -19,7 +19,7 @@
             <div class="col-4 pl-1 pr-1">
               <div
                 v-if="lastMatch.home.logo && lastMatch.home.logo._id"
-                class="lastMatch-logo"
+                class="lastMatch-logo text-center"
               >
                 <img
                   :src="
@@ -70,7 +70,7 @@
             <div class="col-4 pl-1 pr-1">
               <div
                 v-if="lastMatch.away.logo && lastMatch.away.logo._id"
-                class="lastMatch-logo"
+                class="lastMatch-logo text-center"
               >
                 <img
                   :src="
@@ -90,10 +90,10 @@
               v-if="
                 lastMatch.result.sets &&
                   lastMatch.result.sets.length > 0"
-              class="row ml-0 mr-0 border-top mt-1"
+              class="row ml-0 mr-0 mt-1 align-items-center"
             >
-              <div class="col-auto lastMatch-sets-title pl-1 pr-1">
-                SETLER :
+              <div class="col-auto lastMatch-sets-title pr-1">
+                PERİYOD:
               </div>
               <div class="col-auto pl-1">
                 <span
@@ -112,7 +112,7 @@
             <div class="col-4 pl-1 pr-1">
               <div
                 v-if="nextMatch.home.logo && nextMatch.home.logo._id"
-                class="lastMatch-logo"
+                class="lastMatch-logo text-center"
               >
                 <img
                   :src="
@@ -132,6 +132,24 @@
               <div class="vL-inline-title">
                 GELECEK MAÇ
               </div>
+              <a
+                v-if="
+                  nextMatch.liveLogo &&
+                    nextMatch.liveLogo._id"
+                :href="nextMatch.liveUrl"
+                target="_blank"
+                class="live-url"
+              >
+                <img
+                  :src="
+                    storageDir +
+                    nextMatch.liveLogo.path +
+                    '/' +
+                    nextMatch.liveLogo.filename
+                  "
+                  class="live-icon"
+                >
+              </a>
               <div class="mt-4 text-center nextMatch-info">
                 <span>
                   {{ nextMatch.date }}
@@ -152,7 +170,7 @@
             <div class="col-4 pl-1 pr-1">
               <div
                 v-if="nextMatch.away.logo && nextMatch.away.logo._id"
-                class="lastMatch-logo"
+                class="lastMatch-logo text-center"
               >
                 <img
                   :src="
@@ -307,6 +325,11 @@ export default {
 }
 .lastMatch-logo {
   padding: 5px;
+}
+.lastMatch-logo, .nextMatch-logo {
+    img {
+      max-height: 105px;
+    }
 }
 .lastMatch-team {
   font-size: .6em;

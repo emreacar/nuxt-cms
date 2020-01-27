@@ -1,21 +1,22 @@
 <template>
   <div class="row mx-0 page-category">
     <div
-      v-if="page.customParams && page.customParams.headerTitle"
-      class="col-12 g-module-header mb-2 py-2 shadow-lg"
+      v-if="data.settings.showTitle &&
+        data.settings[appData.settings.defaultLang]"
+      class="col-12 g-module-header yF-header mb-2 py-2 shadow-lg"
     >
-      <span v-if="page.customParams.headerIcon" class="module-header-icon mr-2">
-        <i :class="page.customParams.headerIcon[appData.settings.defaultLang]" />
+      <span class="module-header-icon mr-2">
+        <i class="fas fa-newspaper" />
       </span>
       <span>
-        {{ page.customParams.headerTitle[appData.settings.defaultLang] }}
+        {{ data.settings[appData.settings.defaultLang] }}
       </span>
     </div>
 
     <div class="col-12 mb-2">
       <div class="row">
         <div
-          v-for="c in data"
+          v-for="c in data.content"
           :key="c._id"
           class="col-12 col-md-3 page-category-item mb-2 pl-1 pr-1"
         >
@@ -41,10 +42,10 @@
                 src="/placeholder.jpg"
                 class="img-fluid"
               >
-              <div class="item-category">
-                {{ c.category.titles[appData.settings.defaultLang] }}
-              </div>
               <div class="item-title">
+                <div class="item-category">
+                  {{ c.category.titles[appData.settings.defaultLang] }}
+                </div>
                 {{ c.content[appData.settings.defaultLang].title }}
               </div>
               <div class="bg-mask" />
@@ -60,15 +61,12 @@
 export default {
   props: {
     data: {
-      type: Array,
-      default: () => { return [] }
+      type: Object,
+      default: () => { return {} }
     }
   },
-  computed: {
-    page () {
-      return this.$store.state.page
-    }
-  }
+  mounted () {},
+  methods: {}
 }
 </script>
 
@@ -80,14 +78,6 @@ export default {
       img {
         border-radius: 12px;
       }
-      .item-category {
-        position: absolute;
-        top: 4px;
-        right: 4px;
-        font-size: .7rem;
-        color: #fff;
-        z-index: 3;
-      }
       .item-title {
         position: absolute;
         bottom: 4px;
@@ -97,9 +87,8 @@ export default {
         font-size: 1rem;
         color: #fff;
         z-index: 3;
-        a {
-          text-decoration: none;
-          color: #fff;
+        .item-category {
+          font-size: .7rem;
         }
       }
       .bg-mask {

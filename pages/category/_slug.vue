@@ -125,6 +125,7 @@
 export default {
   scrollToTop: true,
   loading: false,
+  layout: 'category',
   watchQuery: ['page'],
   // Key for <NuxtChild> (transitions)
   key: to => to.fullPath,

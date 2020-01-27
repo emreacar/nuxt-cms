@@ -1,11 +1,19 @@
 <template>
-  <div class="row mx-0 justify-content-center contactForm py-4 shadow-sm">
-    <div class="col-12 col-md-8">
+  <div class="row mx-0 justify-content-center contactForm py-4 shadow-sm align-items-center">
+    <div class="col-12 text-center mb-4">
       <h5>
         İletişim Formu
       </h5>
+      <p class="font-weight-light">
+        Görüş ve önerilerinize değer veriyoruz.
+        <br>
+        Bizimle iletşime geçmek için formu kullanın.
+      </p>
     </div>
-    <div class="col-12 col-md-8">
+    <div class="d-none d-md-block col-md-6 text-center">
+      <img src="/contact.svg" class="img-fluid contact-envelope">
+    </div>
+    <div class="col-12 col-md-6">
       <div v-if="data.settings.form_NameSurname && data.settings.form_NameSurname === 'true'" class="form-group">
         <label>
           Ad Soyad
@@ -166,12 +174,19 @@ export default {
 <style lang="scss" scoped>
 .contactForm {
   background: #f7f7f7;
+  .contact-envelope {
+    max-width: 300px;
+  }
 }
 .form-group {
   margin-bottom: .3em;
   label {
     font-size: 80%;
     margin-bottom: .1em;
+    margin-left: .5em;
+  }
+  input, textarea {
+    border-radius: 16px;
   }
 }
 </style>

@@ -5,12 +5,7 @@
         <div class="col-10 bbs-logo col-md-4 pr-md-0">
           <nuxt-link to="/" class="logo">
             <img
-              :src="
-                storageDir +
-                appData.settings.brands.logo.path +
-                '/' +
-                appData.settings.brands.logo.filename
-              "
+              src="/logo.svg"
               class="logo-img img-fluid"
               alt="logo"
             >
@@ -88,13 +83,13 @@ export default {
 <style lang="scss" scoped>
 .logo {
   display: block;
+  text-decoration: none !important;
   .logo-img {
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
   }
 }
-
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .header-modules {
     background: rgba(255, 255, 255, .9);
     transition: right 0.4s;

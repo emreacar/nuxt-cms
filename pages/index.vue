@@ -1,15 +1,10 @@
 <template>
-  <pageLoader :data="{pageType: page.type, content}" />
+  <div />
 </template>
 
 <script>
-import pageLoader from '@@/components/pageLoader'
-
 export default {
   scrollToTop: true,
-  components: {
-    pageLoader
-  },
   async asyncData ({ store, app, params, error }) {
     const { page, content, modules } = await app.$axios.$get('page/main')
     store.commit('setPage', page)

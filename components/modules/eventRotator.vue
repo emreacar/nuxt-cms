@@ -14,7 +14,7 @@
       </span>
     </div>
 
-    <div class="col-12 pl-1 pr-1">
+    <div class="col-12 px-0">
       <div
         v-swiper:mySwiper="swiperOption"
         :class="[
@@ -41,19 +41,20 @@
               </div>
 
               <div class="row e-content mt-1">
-                <div v-if="event.modules.cover.length > 0" class="col-6 pr-1">
+                <div class="col-6 pr-1">
                   <img
+                    v-if="event.modules.cover.length > 0"
                     :data-src="storageDir + event.modules.cover[0].path + '/' +event.modules.cover[0].filename"
                     src="/placeholder.jpg"
                     class="img-fluid rounded lazyload"
                   >
+                  <img
+                    v-else
+                    src="/placeholder.jpg"
+                    class="img-fluid rounded"
+                  >
                 </div>
-                <div
-                  :class="[
-                    'e-captions',
-                    event.modules.cover.length > 0 ? 'col-6 pl-1' : 'col-12'
-                  ]"
-                >
+                <div class="e-captions col-6 pl-1">
                   <div class="row h-100">
                     <div class="col-12">
                       <span v-if="event.customParams && event.customParams.eventTitle">

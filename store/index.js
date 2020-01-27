@@ -3,14 +3,7 @@ export const state = () => ({
   page: {},
   content: [],
   positions: {
-    CONTENT_TOP: [],
-    CONTENT_TOP_LEFT: [],
-    CONTENT_TOP_RIGHT: [],
-    CONTENT_LEFT: [],
-    CONTENT_RIGHT: [],
-    CONTENT_BOTTOM: [],
-    CONTENT_BOTTOM_LEFT: [],
-    CONTENT_BOTTOM_RIGHT: []
+    CONTENT_TOP: []
   },
   modules: {},
   pagePath: []

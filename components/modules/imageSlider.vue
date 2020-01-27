@@ -20,8 +20,8 @@
     <div v-if="data.settings.showHeader" class="swiper-bordered" />
     <div class="swiper-wrapper">
       <div
-        v-for="image in images"
-        :key="image._id"
+        v-for="(image, i) in images"
+        :key="i"
         class="swiper-slide"
       >
         <div

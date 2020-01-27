@@ -1,15 +1,10 @@
 <template>
-  <pageLoader v-if="page" :data="{pageType: page.type, content}" />
+  <div />
 </template>
 
 <script>
-import pageLoader from '@@/components/pageLoader'
-
 export default {
   scrollToTop: true,
-  components: {
-    pageLoader
-  },
   async asyncData ({ store, app, params, error }) {
     const { page, pagePath } = await app.$axios.$get('page/link',
       { params: { slug: params.slug } })
@@ -18,6 +13,7 @@ export default {
       store.commit('setModules', page.modules)
       store.commit('setCrumb', pagePath)
     }
+
     return {
       page: page ? page.page : false,
       content: page ? page.content : false
